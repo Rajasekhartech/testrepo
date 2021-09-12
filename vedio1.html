@@ -72,14 +72,13 @@
 	transform: translate(-50%,-50%)
 }
 
-@media screen and (-webkit-min-device-pixel-ratio:0) {
     input[type='range'] {
       overflow: hidden;
       width: 100%;
       height: 15px;
       margin: 10px;
       -webkit-appearance: none;
-      border-radius: 15px;
+      border-radius: 5px;
         background: #d3d3d3;
         outline: none;
     -webkit-transition: .2s;
@@ -96,16 +95,16 @@
     input[type='range']::-webkit-slider-thumb {
       -webkit-appearance: none;
       appearance: none;
-      width: 10px;
-      height: 40px;
-      overflow:display;
-      border-radius: 40%;
+      width: 30px;
+      height: 30px;
+      overflow:hide;
+      border-radius: 0%;
       cursor: pointer;
-      background: #0074BC;
+      background: black;
       box-shadow: -2000px 0 0 2000px #0074BC;
     }
 
-}
+
 /** FF*/
 input[type="range"]::-moz-range-progress {
   background-color: #43e5f7;
@@ -234,6 +233,21 @@ vid.onended = function(e) {
 
         var timeout;
         var duration = 3500;
+        videocon.addEventListener('mousemove', function() {
+          videocon.style.display = "inline-flex"
+          clearTimeout(timeout);
+          timeout = setTimeout(function() {
+            videocon.style.display = "none"
+          }, duration)
+            });
+        videocon.addEventListener('touchmove', function() {
+           console.log("touched")
+          videocon.style.display = "inline-flex"
+          clearTimeout(timeout);
+          timeout = setTimeout(function() {
+            videocon.style.display = "none"
+          }, duration)
+            });
         videoelement.addEventListener('mousemove', function() {
           videocon.style.display = "inline-flex"
           clearTimeout(timeout);
@@ -473,13 +487,17 @@ vid.onended = function(e) {
         if ( window.screen.height == $( document ).height()){
                     if (os == "iOS"){
                         console.log("ios")
-                         videocon.style.bottom = "25%"
+                         videocon.style.bottom = "20%"
                     }else{
                         videocon.style.bottom = "10%"
                     }
                 }else{
-                    console.log("inside", screen.orientation.angle)
-                    if (screen.orientation.angle  == 90 || screen.orientation.angle  == 270  ){
+                     if (os == "iOS"){
+                        if(window.orientation == 90){
+                            console.log("iphone landscape")
+                            videocon.style.bottom = "20%"
+                        }
+                    }else if (screen.orientation.angle  == 90 || screen.orientation.angle  == 270  ){
                                     console.log(screen.orientation.angle)
                         var dynht = window.innerHeight - 100
                         if (os == "iOS"){
