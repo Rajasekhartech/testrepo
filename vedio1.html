@@ -314,24 +314,7 @@ vid.onended = function(e) {
 
 		}
 	});
-    video.addEventListener("click", function() {
-		if (video.paused == true) {
-			// Play the video
-			video.play();
 
-			// Update the button text to 'Pause'
-			plybtn.src = "videocontrols/pause.png";
-			playButtonMain.style.display = "none";
-		} else {
-			// Pause the video
-			video.pause();
-			videocon.style.display = "inline-flex"
-
-			// Update the button text to 'Play'
-			plybtn.src = "videocontrols/play.png";
-			playButtonMain.style.display = "block";
-		}
-	});
     playButtonMain.addEventListener("click", function() {
 			video.play();
 			playButtonMain.style.display = "none";
