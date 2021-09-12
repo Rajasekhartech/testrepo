@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Mobility Journey</title>
+    <script src="js/main.js"></script>
+            <script src="js/jquery-2.2.0.min.js"></script>
+    <style>
+            #fullscreen , #exitfullscreen{
+            cursor: pointer;
+            }
+
+            #white-background{
+                display: none;
+                width: 100%;
+                height: 100%;
+                position: fixed;
+                top: 0px;
+                left: 0px;
+                background-color: #0074BC;
+                opacity: 1;
+                z-index: 9999;
+            }
+
+
+             #dlgbox{
+                /*initially dialog box is hidden*/
+                display: none;
+                position: fixed;
+                width: 30%;
+                height: 47%;
+                z-index: 9999;
+                border-radius: 10px;
+                background: url(popup.png);
+                background-size: 100%;
+                background-repeat: no-repeat;
+            }
+
+            #dlg-header{
+                color: white;
+                font-size: 20px;
+                padding: 10px;
+                margin: 10px 10px 0px 10px;
+                text-align: center;
+            }
+
+            #dlg-body{
+                color: black;
+                font-size: 14px;
+                padding: 10px;
+                margin: 0px 10px 0px 10px;
+            }
+
+            #dlg-footer{
+                background-color: #f2f2f2;
+                text-align: right;
+                padding: 10px;
+                margin: 0px 10px 10px 10px;
+            }
+
+            #dlg-footer button{
+                background-color: #6d84b4;
+                color: white;
+                padding: 5px;
+                border: 0px;
+            }
+        </style>
+
+</head>
+
+<div id="iframemain" onclick="fullscreen()"  style="position:fixed;">
+<body style="margin:0px; height:100%">
+
+<div id = "dial">
+<div id="white-background">
+        </div>
+        <div id="dlgbox">
+            <div id="dlg-body">
+                <button id = "conti" onclick="conti()" style="position: fixed;left: 35%;width: auto;background: none;border: none;">
+                    <img src="continue.png" style="width: 10%;margin-top: 2%;margin-left: 3%;position: fixed;">
+                </button>
+                 <button onclick="restart()" style="position: fixed;right: 35%;width: auto;background: none;border: none;">
+                     <img src="restart.png" style="width: 10%;margin-top: 2%;position: fixed;margin-left: -13%;">
+                </button>
+
+            </div>
+
+        </div>
+</div>
+    <div id="fullScreenOpt" style="display:none">
+    <button  id="fullscreen" style="top: 5%;right: 5px;position: fixed;z-index: 14;width: 4%;background: transparent;border:none;" onclick="fullscreen()" value="">
+        <img style="top: 5%;right: 5px;position: fixed;z-index: 14;width: 37px;" src="fullscreen.png">
+    </button>
+    <button id="exitfullscreen" style="display:none;top: 5%;right: 5px;position: fixed;z-index: 14;width: 4%;background: transparent;border:none " onclick="exitfullscreen()" value="">
+        <img   style="top: 5%;right: 5px;position: fixed;z-index: 14;width: 37px;" src="exitfullscreen.png">
+    </button>
+    </div>
+    <iframe  src="main.html" style="width:100%; height:100%;overflow:hidden;position:fixed;border: none;background:black" title="Test"  id = "test" >
+    </iframe>
+</body>
+</div>
+
+<script>
+    var frm = document.getElementById('test')
+
+    var interval = 1;
+    $(document).ready(function() {
+        $('#test').on('load', function() {
+            $('#test').contents().on('click touchstart mousemove', handlerFunction);
+        });
+    });
+    $(document).ready(function() {
+        $('#test').on('load', function() {
+            $('#test').contents().on('click touchstart mousemove', handlerFunction);
+        });
+    });
+    $('#test').on('load', function() {
+            $('#test').contents().on('click touchstart', fullscreen);
+        });
+
+function handlerFunction() {
+    //do stuff here triggered by events in the iframe
+    var videocon = document.getElementById('fullScreenOpt');
+              videocon.style.display = "block"
+              interval = 1;
+}
+
+    setInterval(function(){
+       var videocon = document.getElementById('fullScreenOpt');
+       if(interval == 4){
+           /* if intervall reaches 5 the user is inactive hide element/s */
+
+           videocon.style.display = "none"
+           interval = 1;
+       }
+        interval = interval+1;
+        },1000);
+
+        $(frm).bind('mousemove', function() {
+        /* on mousemove or keypressed show the hidden input (user active) */
+            var videocon = document.getElementById('fullScreenOpt');
+              videocon.style.display = "block"
+              interval = 1;
+    });
+
+    function conti(){
+        var prog = getCookie("JournyProgress")
+        console.log("called");
+        setCookie("JournyProgress" , prog, 1);
+         $('#dial').hide()
+         document.getElementById('iframemain').contentWindow.location.reload(true);
+
+
+     }
+     function restart(){
+        var prog = getCookie("JournyProgress")
+        console.log("called");
+        setCookie("JournyProgress" , 0, 1);
+
+         $('#dial').hide();
+
+
+    document.getElementById('test').src = "main.html"
+     }
+
+
+     function fullscreen(){
+      var mainobject = document.getElementById("iframemain");
+        fullscreenmain(mainobject);
+        $('#fullscreen').hide()
+        $('#exitfullscreen').show()
+
+    };
+
+    function keyPress (e) {
+    if(e.key === "Escape") {
+        closeFullscreen();
+        $('#exitfullscreen').hide()
+        $('#fullscreen').show()
+    }
+}
+
+function exitfullscreen(){
+    console.log("fuction called");
+      var mainobject = document.getElementById("iframemain");
+        closeFullscreen();
+        $('#exitfullscreen').hide()
+        $('#fullscreen').show()
+
+    };
+
+$( document ).ready(function() {
+    var prog = getCookie("JournyProgress")
+
+    function showDialog(){
+                var whitebg = document.getElementById("white-background");
+                var dlg = document.getElementById("dlgbox");
+                whitebg.style.display = "block";
+                dlg.style.display = "block";
+
+                var winWidth = window.innerWidth;
+                var winHeight = window.innerHeight;
+
+                dlg.style.left = "35%";
+                dlg.style.top = "30%";
+            }
+    if (prog > 0){
+        showDialog()
+
+
+    }else {
+
+        setCookie("JournyProgress" , 0 , 1);
+    }
+});
+    function test(){
+        var mainobject = document.getElementById("test");
+        fullscreenmain(mainobject);
+    };
+
+    function showDialog(){
+                var whitebg = document.getElementById("white-background");
+                var dlg = document.getElementById("dlgbox");
+                whitebg.style.display = "block";
+                dlg.style.display = "block";
+
+                var winWidth = window.innerWidth;
+                var winHeight = window.innerHeight;
+
+                dlg.style.left = "35%";
+                dlg.style.top = "30%";
+            }
+
+
+
+
+</script>
+
+</html>
