@@ -413,7 +413,12 @@ vid.onended = function(e) {
                     }
                 }else{
                     console.log("test",window.orientation)
-                    if (screen.orientation.angle  == 90 || screen.orientation.angle  == 270  ){
+                    if (os == "iOS"){
+                        if(window.orientation == 90){
+                            console.log("iphone landscape")
+                            videocon.style.bottom = "20%"
+                        }
+                    }else if (screen.orientation.angle  == 90 || screen.orientation.angle  == 270  ){
                         var dynht = $( document ).height() - 100
 
                          console.log("os test" , os)
