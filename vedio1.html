@@ -127,7 +127,6 @@ input[type="range"]::-ms-fill-upper {
 	width:80%;
 	left: 10%;
 	right: 10%;
-	padding: 5px;
 	display: "block";
 <!--	opacity: 0;-->
 	-webkit-transition: opacity .3s;
@@ -367,11 +366,6 @@ vid.onended = function(e) {
 			playButtonMain.style.display = "block";
 	});
 
-<!--	seekBar.addEventListener("click", function() {-->
-<!--		video.pause();-->
-<!--		plybtn.src = "videocontrols/play.png";-->
-<!--			playButtonMain.style.display = "block";-->
-<!--	});-->
 
 	// Play the video when the seek handle is dropped
 	seekBar.addEventListener("mouseup", function() {
@@ -382,35 +376,24 @@ vid.onended = function(e) {
 	});
 
 
-<!--	$(function() {-->
-<!--    var $window = $(window);-->
-<!--    var width = $window.width();-->
-<!--    var height = $window.height();-->
-
-<!--    setInterval(function () {-->
-<!--        if ((width != $window.width()) || (height != $window.height())) {-->
-<!--            width = $window.width();-->
-<!--            height = $window.height();-->
-
-<!--            alert("resized!");-->
-<!--        }-->
-<!--    }, 300);-->
-<!--});-->
 	$(window).resize(function() {
 	    console.log("resize")
 	    var videocon = document.getElementById('video-controls');
-
+	    console.log(window.screen.height , window.screen.width , $( document ).height())
         if (typeof (window.orientation) !== 'undefined'){
-                console.log("inside", screen.orientation.angle)
-                if (screen.orientation.angle  == 90 || screen.orientation.angle  == 270  ){
-                                console.log(screen.orientation.angle)
-
-                    var dynht = window.innerHeight - 100
-                     videocon.style.bottom = "25%"
-                }else if (screen.orientation.angle  == 0 ){
-                    console.log("entered")
-                    var dynh = window.innerHeight - 250
+                if ( window.screen.height == $( document ).height()){
                     videocon.style.bottom = "10%"
+                }else{
+                    console.log("inside", screen.orientation.angle)
+                    if (screen.orientation.angle  == 90 || screen.orientation.angle  == 270  ){
+                                    console.log(screen.orientation.angle)
+                        var dynht = window.innerHeight - 100
+                         videocon.style.bottom = "30%"
+                    }else if (screen.orientation.angle  == 0 ){
+                        console.log("entered")
+                        var dynh = window.innerHeight - 250
+                        videocon.style.bottom = "10%"
+                    }
                 }
             }else {
                 var dynht = window.innerHeight - 100
@@ -427,17 +410,22 @@ vid.onended = function(e) {
     var dynht = window.innerHeight - 100
     videocon.style.bottom = "10%"
     console.log(typeof window.orientation , window.orientation)
+    console.log(window.screen.height , window.screen.width , $( document ).height())
     if (typeof (window.orientation) !== 'undefined'){
-        console.log("mobile")
-        if (screen.orientation.angle  == 90){
-            console.log(screen.orientation.angle)
-            var dynht = window.innerHeight - 100
-             videocon.style.bottom = "25%"
-        }else{
-
-            var dynh = window.innerHeight - 250
-            videocon.style.bottom = "10%"
-        }
+        if ( window.screen.height == $( document ).height()){
+                    videocon.style.bottom = "10%"
+                }else{
+                    console.log("inside", screen.orientation.angle)
+                    if (screen.orientation.angle  == 90 || screen.orientation.angle  == 270  ){
+                                    console.log(screen.orientation.angle)
+                        var dynht = window.innerHeight - 100
+                         videocon.style.bottom = "30%"
+                    }else if (screen.orientation.angle  == 0 ){
+                        console.log("entered")
+                        var dynh = window.innerHeight - 250
+                        videocon.style.bottom = "10%"
+                    }
+                }
     }else{
         videocon.style.bottom = "10%"
     }
