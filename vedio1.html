@@ -411,7 +411,8 @@ vid.onended = function(e) {
                          var os = getMobileOperatingSystem()
                          console.log("os test" , os)
                         if (os == "iOS"){
-                         videocon.style.bottom = "60%"
+                        console.log("ios")
+                         videocon.style.bottom = "40%"
                          }else if(os == "Android") {
                             videocon.style.bottom = "25%"
                          }
@@ -465,7 +466,7 @@ vid.onended = function(e) {
                         var dynht = window.innerHeight - 100
                         var os = getMobileOperatingSystem()
                         if (os == "iOS"){
-                         videocon.style.bottom = "60%"
+                         videocon.style.bottom = "40%"
                          }else if(os == "Android") {
                             videocon.style.bottom = "25%"
                          }
