@@ -404,6 +404,7 @@ vid.onended = function(e) {
             if (typeof (window.orientation) !== 'undefined'){
                 var os = getMobileOperatingSystem()
                 if ( window.screen.height == $( document ).height()){
+                    console.log("yest")
                     if (os == "iOS"){
                         console.log("ios")
                          videocon.style.bottom = "20%"
@@ -411,7 +412,7 @@ vid.onended = function(e) {
                         videocon.style.bottom = "10%"
                     }
                 }else{
-                    console(window.orientation)
+                    console.log("test",window.orientation)
                     if (screen.orientation.angle  == 90 || screen.orientation.angle  == 270  ){
                         var dynht = $( document ).height() - 100
 
