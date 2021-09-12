@@ -314,7 +314,24 @@ vid.onended = function(e) {
 
 		}
 	});
+    video.addEventListener("click", function() {
+		if (video.paused == true) {
+			// Play the video
+			video.play();
 
+			// Update the button text to 'Pause'
+			plybtn.src = "videocontrols/pause.png";
+			playButtonMain.style.display = "none";
+		} else {
+			// Pause the video
+			video.pause();
+			videocon.style.display = "inline-flex"
+
+			// Update the button text to 'Play'
+			plybtn.src = "videocontrols/play.png";
+			playButtonMain.style.display = "block";
+		}
+	});
     playButtonMain.addEventListener("click", function() {
 			video.play();
 			playButtonMain.style.display = "none";
@@ -401,20 +418,26 @@ vid.onended = function(e) {
 	    console.log("resize")
 	    var videocon = document.getElementById('video-controls');
 	    console.log(window.screen.height , window.screen.width , $( document ).height())
-        if (typeof (window.orientation) !== 'undefined'){
+            if (typeof (window.orientation) !== 'undefined'){
+                var os = getMobileOperatingSystem()
                 if ( window.screen.height == $( document ).height()){
-                    videocon.style.bottom = "10%"
+                    if (os == "iOS"){
+                        console.log("ios")
+                         videocon.style.bottom = "15%"
+                    }else{
+                        videocon.style.bottom = "10%"
+                    }
                 }else{
                     console.log("inside", screen.orientation.angle)
                     if (screen.orientation.angle  == 90 || screen.orientation.angle  == 270  ){
                         var dynht = $( document ).height() - 100
-                         var os = getMobileOperatingSystem()
+
                          console.log("os test" , os)
                         if (os == "iOS"){
                         console.log("ios")
-                         videocon.style.bottom = "40%"
+                         videocon.style.bottom = "30%"
                          }else if(os == "Android") {
-                            videocon.style.bottom = "25%"
+                            videocon.style.bottom = "20%"
                          }
                     }else if (screen.orientation.angle  == 0 ){
                         console.log("entered")
@@ -457,18 +480,23 @@ vid.onended = function(e) {
         return "unknown";
     }
     if (typeof (window.orientation) !== 'undefined'){
+        var os = getMobileOperatingSystem()
         if ( window.screen.height == $( document ).height()){
-                    videocon.style.bottom = "10%"
+                    if (os == "iOS"){
+                        console.log("ios")
+                         videocon.style.bottom = "15%"
+                    }else{
+                        videocon.style.bottom = "10%"
+                    }
                 }else{
                     console.log("inside", screen.orientation.angle)
                     if (screen.orientation.angle  == 90 || screen.orientation.angle  == 270  ){
                                     console.log(screen.orientation.angle)
                         var dynht = window.innerHeight - 100
-                        var os = getMobileOperatingSystem()
                         if (os == "iOS"){
-                         videocon.style.bottom = "40%"
+                         videocon.style.bottom = "30%"
                          }else if(os == "Android") {
-                            videocon.style.bottom = "25%"
+                            videocon.style.bottom = "20%"
                          }
 
                     }else if (screen.orientation.angle  == 0 ){
