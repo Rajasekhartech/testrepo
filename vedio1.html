@@ -381,11 +381,21 @@ vid.onended = function(e) {
 
 	});
 
-	// Event listener for the volume bar
-	volumeBar.addEventListener("change", function() {
-		// Update the video volume
-		video.volume = volumeBar.value;
-	});
+
+<!--	$(function() {-->
+<!--    var $window = $(window);-->
+<!--    var width = $window.width();-->
+<!--    var height = $window.height();-->
+
+<!--    setInterval(function () {-->
+<!--        if ((width != $window.width()) || (height != $window.height())) {-->
+<!--            width = $window.width();-->
+<!--            height = $window.height();-->
+
+<!--            alert("resized!");-->
+<!--        }-->
+<!--    }, 300);-->
+<!--});-->
 	$(window).resize(function() {
 	    console.log("resize")
 	    var videocon = document.getElementById('video-controls');
@@ -428,6 +438,8 @@ vid.onended = function(e) {
             var dynh = window.innerHeight - 250
             videocon.style.bottom = "10%"
         }
+    }else{
+        videocon.style.bottom = "10%"
     }
 
     });
