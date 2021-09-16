@@ -438,6 +438,7 @@ vid.onended = function(e) {
 
 	$(window).resize(function() {
 	    console.log("resize")
+	    window.moveTo(0,0)
 	    var videocon = document.getElementById('video-controls');
 	    console.log(window.screen.height , window.screen.width , $( document ).height())
             if (typeof (window.orientation) !== 'undefined'){
@@ -487,6 +488,7 @@ vid.onended = function(e) {
     var videocon = document.getElementById('video-controls');
     var dynht = window.innerHeight - 100
     videocon.style.bottom = "10%"
+    window.moveTo(0,0)
     console.log(typeof window.orientation , window.orientation)
     console.log(window.screen.height , window.screen.width , $( document ).height())
     function getMobileOperatingSystem() {
