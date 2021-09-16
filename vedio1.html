@@ -546,7 +546,10 @@ vid.onended = function(e) {
 
     });
 
-
+    setTimeout(function () {
+    console.log("entered in timeout");
+  window.scrollTo(0, 1);
+}, 1000);
 
 </script>
 
