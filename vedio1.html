@@ -183,6 +183,15 @@ button:hover {
 
 </div>
 
+ <div id="fullScreenOpt" style="display:block">
+    <button  id="fullscreen" style="display:block;top: 5%;left: 5px;position: fixed;z-index: 14;width: 4%;background: transparent;border:none;" onclick="fullscreen()" value="">
+        <img style="top: 5%;left: 5px;position: fixed;z-index: 14;width: 37px;" src="fullscreen.png">
+    </button>
+    <button id="exitfullscreenbtn" style="cursor:pointer; display:none;top: 5%;left: 5px;position: fixed;z-index: 14;width: 4%;background: transparent;border:none " onclick="exitfullscreen()" value="">
+        <img   style="top: 5%;left: 5px;position: fixed;z-index: 14;width: 37px;" src="exitfullscreen.png">
+    </button>
+ </div>
+
 <button type="button" id="playmain" style="width: 8%;background: transparent;border: none;display: inline-flex;
 position: absolute;z-index: 99999;top: 50%;left:50%;transform: translate(-50%, -50%);margin: auto;opacity:0.75;">
     <img id="play" src="videocontrols/play.png" style="width: 100%">
@@ -435,7 +444,14 @@ vid.onended = function(e) {
 
         return "unknown";
     }
+     function fullscreen(){
+     console.log("calling fullscreen")
+      var mainobject = document.getElementById("iframemain");
+        fullscreenmain(mainobject);
+        $('#fullscreen').hide()
+        $('#exitfullscreenbtn').show()
 
+    };
 	$(window).resize(function() {
 	    console.log("resize")
 	    window.moveTo(0,0)
