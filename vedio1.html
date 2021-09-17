@@ -166,7 +166,7 @@ button:hover {
 
 
 </head>
-<body id="mainbody" style="overflow:scroll; margin:0px; height:100%;background: black">
+<body id="mainbody" style="overflow:hidden; margin:0px; height:100%;background: black">
 <div id="white-background">
 </div>
 <div id="dlgbox">
@@ -183,19 +183,18 @@ button:hover {
 
 </div>
 
- <div id="fullScreenOpt" style="display:block">
+<button type="button" id="playmain" style="width: 8%;background: transparent;border: none;display: inline-flex;
+position: absolute;z-index: 99999;top: 50%;left:50%;transform: translate(-50%, -50%);margin: auto;opacity:0.75;">
+    <img id="play" src="videocontrols/play.png" style="width: 100%">
+</button>
+<div id="fullScreenOpt" style="display:block">
     <button  id="fullscreen" style="display:block;top: 5%;left: 5px;position: fixed;z-index: 14;width: 4%;background: transparent;border:none;" onclick="fullscreen()" value="">
         <img style="top: 5%;left: 5px;position: fixed;z-index: 14;width: 37px;" src="fullscreen.png">
     </button>
     <button id="exitfullscreenbtn" style="cursor:pointer; display:none;top: 5%;left: 5px;position: fixed;z-index: 14;width: 4%;background: transparent;border:none " onclick="exitfullscreen()" value="">
         <img   style="top: 5%;left: 5px;position: fixed;z-index: 14;width: 37px;" src="exitfullscreen.png">
     </button>
- </div>
-
-<button type="button" id="playmain" style="width: 8%;background: transparent;border: none;display: inline-flex;
-position: absolute;z-index: 99999;top: 50%;left:50%;transform: translate(-50%, -50%);margin: auto;opacity:0.75;">
-    <img id="play" src="videocontrols/play.png" style="width: 100%">
-</button>
+    </div>
 <div id="video-container">
     <video id="vid1" class="vid" width="100%" height="100%" name="media" playsinline style="
     width: 100%;
@@ -226,10 +225,25 @@ position: absolute;z-index: 99999;top: 50%;left:50%;transform: translate(-50%, -
 </body>
 
 <script>
+function fullscreen(){
+     console.log("calling fullscreen")
+      var mainobject = document.getElementById("vid1");
+        fullscreenmain(mainobject);
+        $('#fullscreen').hide()
+        $('#exitfullscreenbtn').show()
+
+    };
+    function exitfullscreen(){
+<!--        $("#iframemain").hide()-->
+        $("#fullscreen").show()
+        $("#exitfullscreenbtn").hide()
+        closeFullscreen();
+    };
 
 var vid = document.getElementById("vid1");
 var videocon = document.getElementById('video-controls');
 vid.onended = function(e) {
+  exitfullscreen()
   showDialog()
 };
 
@@ -444,19 +458,11 @@ vid.onended = function(e) {
 
         return "unknown";
     }
-     function fullscreen(){
-     console.log("calling fullscreen")
-      var mainobject = document.getElementById("vid1");
-        fullscreenmain(mainobject);
-        $('#fullscreen').hide()
-        $('#exitfullscreenbtn').show()
 
-    };
 	$(window).resize(function() {
 	    console.log("resize")
-	    window.moveTo(0,0)
 	    var videocon = document.getElementById('video-controls');
-	    console.log(window.screen.height , window.screen.width , $( document ).height(), $(video).height())
+	    console.log(window.screen.height , window.screen.width , $( document ).height())
             if (typeof (window.orientation) !== 'undefined'){
                 var os = getMobileOperatingSystem()
                 if ( window.screen.height == $( document ).height()){
@@ -504,7 +510,6 @@ vid.onended = function(e) {
     var videocon = document.getElementById('video-controls');
     var dynht = window.innerHeight - 100
     videocon.style.bottom = "10%"
-    window.moveTo(0,0)
     console.log(typeof window.orientation , window.orientation)
     console.log(window.screen.height , window.screen.width , $( document ).height())
     function getMobileOperatingSystem() {
@@ -562,10 +567,7 @@ vid.onended = function(e) {
 
     });
 
-    setTimeout(function () {
-    console.log("entered in timeout");
-  window.moveTo(0, 0);
-}, 1000);
+
 
 </script>
 
