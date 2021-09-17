@@ -95,7 +95,7 @@
         <img   style="top: 5%;right: 5px;position: fixed;z-index: 14;width: 37px;" src="exitfullscreen.png">
     </button>
     </div>
-    <iframe onclick="fullscreen()"   src="main.html" style="width:100%; height:100%;overflow:scroll;position:fixed;border: none;background:black" title="Test"  id = "test" >
+    <iframe    src="main.html" style="width:100%; height:100%;overflow:scroll;position:fixed;border: none;background:black" title="Test"  id = "test" >
     </iframe>
 </body>
 </div>
@@ -114,9 +114,9 @@
             $('#test').contents().on('click touchstart mousemove', handlerFunction);
         });
     });
-    $('#test').on('load', function() {
-            $('#test').contents().on('click touchstart', fullscreen);
-        });
+<!--    $('#test').on('load', function() {-->
+<!--            $('#test').contents().on('click touchstart', fullscreen);-->
+<!--        });-->
 
 function handlerFunction() {
     //do stuff here triggered by events in the iframe
