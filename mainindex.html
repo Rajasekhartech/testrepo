@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en"  style="height:100%">
 <head>
     <meta charset="UTF-8">
     <title>Mobility Journey</title>
@@ -68,7 +68,7 @@
 
 </head>
 
-<div id="iframemain"  style="position:fixed;">
+<div id="iframemain"  style="position:fixed;height:100%">
 <body style="margin:0px; height:100%">
 
 <div id = "dial">
@@ -206,6 +206,11 @@ $( document ).ready(function() {
 
         setCookie("JournyProgress" , 0 , 1);
     }
+});
+$(window).resize(function() {
+    var mainresize = document.getElementById("iframemain")
+    mainresize.style.height = "100%"
+    console.log("main page resized")
 });
 
     function showDialog(){
