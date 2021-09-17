@@ -27,6 +27,9 @@ function fullscreenmain(elem){
       else if (elem.webkitbeginFullscreen) { /* Iphones */
         elem.webkitbeginFullscreen();
       }
+      else{
+        alert("Device not support fullscreen")
+      }
     }
 
 
