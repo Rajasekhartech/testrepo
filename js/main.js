@@ -24,8 +24,8 @@ function fullscreenmain(elem){
       } else if (elem.msRequestFullscreen) { /* IE11 */
         elem.msRequestFullscreen();
       }
-      else if (elem.webkitEnterFullscreen) { /* Iphones */
-        elem.webkitEnterFullscreen();
+      else if (elem.webkitbeginFullscreen) { /* Iphones */
+        elem.webkitbeginFullscreen();
       }
     }
 
@@ -38,6 +38,8 @@ function closeFullscreen() {
     document.webkitExitFullscreen();
   } else if (document.msExitFullscreen) { /* IE11 */
     document.msExitFullscreen();
+  }else if (document.webkitendFullscreen) { /* IE11 */
+    document.webkitendFullscreen();
   }
 
   }
