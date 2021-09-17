@@ -166,7 +166,7 @@ button:hover {
 
 
 </head>
-<body id="mainbody" style="overflow:hidden; margin:0px; height:100%;background: black">
+<body id="mainbody" style="overflow:scroll; margin:0px; height:100%;background: black">
 <div id="white-background">
 </div>
 <div id="dlgbox">
@@ -548,7 +548,7 @@ vid.onended = function(e) {
 
     setTimeout(function () {
     console.log("entered in timeout");
-  window.scrollTo(0, 1);
+  window.moveTo(0, 0);
 }, 1000);
 
 </script>
